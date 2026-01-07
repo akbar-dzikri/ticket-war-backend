@@ -21,7 +21,7 @@ A high-concurrency event ticketing system designed to handle massive traffic sur
 - [X] **Project Setup**: Initialize Fastify with TypeScript (Strict Mode).
 - [X] **Docker Environment**: Setup `docker-compose.yml` for PostgreSQL and RabbitMQ (Management Plugin).
 - [X] **Database Design**: Create Prisma Schema (Users, Events, Tickets, Transactions).
-- [ ] **Database Connection**: Configure Prisma Client & Run initial migration.
+- [X] **Database Connection**: Configure Prisma Client & Run initial migration.
 
 ### Phase 2: Core Features (The MVP)
 
