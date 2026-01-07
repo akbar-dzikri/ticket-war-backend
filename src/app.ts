@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import dotenv from 'dotenv';
+import { prisma } from './lib/db.js';
 
 dotenv.config();
 
@@ -9,6 +10,11 @@ const app = Fastify({
 
 app.get('/', async (request, reply) => {
   return { hello: 'world', mode: 'ESM' };
+});
+
+app.get('/test-db', async () => {
+  const users = await prisma.user.findMany();
+  return { status: 'ok', users };
 });
 
 const start = async () => {
