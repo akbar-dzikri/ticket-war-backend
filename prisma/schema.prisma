@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client"
+  output   = "../src/lib/prisma/generated"
 }
 
 datasource db {
@@ -28,9 +29,9 @@ model Ticket {
   id        Int      @id @default(autoincrement())
   eventId   Int
   userId    Int
-  status    String   @default("SUCCESS")
+  status    String   @default("SUCCESS") // SUCCESS, FAILED
   createdAt DateTime @default(now())
-  
-  event     Event    @relation(fields: [eventId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+
+  event Event @relation(fields: [eventId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
 }
