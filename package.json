@@ -9,6 +9,9 @@
     "build": "echo \"Error: no build provided\" && exit 1",
     "dev": "tsx watch src/server.ts"
   },
+  "imports": {
+    "#/*": "./dist/*.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
