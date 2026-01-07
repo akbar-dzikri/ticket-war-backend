@@ -1,30 +1,18 @@
-import Fastify from 'fastify';
-import dotenv from 'dotenv';
-import { prisma } from './lib/db.js';
+import Fastify from "fastify";
+import { prisma } from "./lib/db.js";
 
-dotenv.config();
 
-const app = Fastify({
-  logger: true
+const app = Fastify({ logger: true });
+
+app.get("/", (request, reply) => {
+  return { msg: "ok" };
 });
 
-app.get('/', async (request, reply) => {
-  return { hello: 'world', mode: 'ESM' };
-});
-
-app.get('/test-db', async () => {
+app.get("/test-db", async (request, reply) => {
   const users = await prisma.user.findMany();
-  return { status: 'ok', users };
+  return reply.code(200).send({
+    users,
+  });
 });
 
-const start = async () => {
-  try {
-    await app.listen({ port: 3000 });
-    console.log('Server running at http://localhost:3000');
-  } catch (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
-};
-
-start();
+export default app;
