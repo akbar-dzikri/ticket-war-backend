@@ -12,11 +12,5 @@ app.get("/", (request, reply) => {
   return { msg: "ok" };
 });
 
-app.get("/test-db", async (request, reply) => {
-  const users = await prisma.user.findMany();
-  return reply.code(200).send({
-    users,
-  });
-});
 
 export default app;
