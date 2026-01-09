@@ -13,3 +13,32 @@ export async function authRegisterService(payload: UserCreateInput) {
     ...newUser,
   };
 }
+
+export async function authLoginService(payload: UserCreateInput) {
+  const foundUser = await prisma.user.findUnique({
+    where: {
+      email: payload.email,
+    },
+  });
+
+  if (!foundUser) {
+    const error = new Error("User not found");
+    (error as any).statusCode = 404;
+    throw error;
+  }
+
+  const isPasswordValid = await bcrypt.compare(
+    payload.password,
+    foundUser.password
+  );
+
+  if (!isPasswordValid) {
+    const error = new Error("Invalid credentials");
+    (error as any).statusCode = 401;
+    throw error;
+  }
+
+  // Remove password from response
+  delete (foundUser as { password?: string }).password;
+  return foundUser;
+}
