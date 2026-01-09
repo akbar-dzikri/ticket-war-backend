@@ -22,14 +22,16 @@ const environment = (process.env.NODE_ENV || "production") as
   | "test";
 const app = Fastify({ logger: envToLogger[environment] ?? true });
 
-app.register(jwt);
-app.register(authRoutes, { prefix: "/api/auth" });
+await app.register(jwt)
+await app.register(authRoutes, { prefix: "/api/auth" });
 
 app.get("/", (request, reply) => {
   return { msg: "ok" };
 });
 
-app.get("/protected", { onRequest: (app.authenticate) }, async (request, reply) => {
+app.log.info(app.authenticate)
+
+app.get("/protected", { onRequest: [app.authenticate] }, (request, reply) => {
   return { msg: "you are auth'd", user: request.user };
 });
 

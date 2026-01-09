@@ -25,7 +25,7 @@ export async function handleLogin(
 
   try {
     const user = await authLoginService(body);
-    const token = reply.jwtSign(
+    const token = await reply.jwtSign(
       { id: user.id, email: user.email },
       { expiresIn: "7d" }
     );
