@@ -25,7 +25,7 @@ A high-concurrency event ticketing system designed to handle massive traffic sur
 
 ### Phase 2: Core Features (The MVP)
 
-- [ ] **Authentication**: Implement JWT Auth (Register/Login).
+- [X] **Authentication**: Implement JWT Auth (Register/Login).
 - [ ] **Event Management**: CRUD APIs for Events (Create event, set quota/seat stock).
 - [ ] **Public View**: API to list available events and remaining seats.
 - [ ] **Booking System (Naive Version)**: Implement basic "Book Ticket" logic directly hitting the DB (Intentionally vulnerable to race conditions for testing).
