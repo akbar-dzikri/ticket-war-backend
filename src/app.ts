@@ -29,4 +29,8 @@ app.get("/", (request, reply) => {
   return { msg: "ok" };
 });
 
+app.get("/protected", { onRequest: (app.authenticate) }, async (request, reply) => {
+  return { msg: "you are auth'd", user: request.user };
+});
+
 export default app;
