@@ -10,7 +10,7 @@ export default fp(async (fastify) => {
   });
 
   fastify.decorate(
-    "auuthenticate",
+    "authenticate",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
         await request.jwtVerify();
