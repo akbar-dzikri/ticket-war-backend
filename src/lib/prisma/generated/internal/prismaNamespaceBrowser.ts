@@ -76,6 +76,7 @@ export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   password: 'password',
+  role: 'role',
   createdAt: 'createdAt'
 } as const
 
@@ -84,11 +85,13 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 export const EventScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   name: 'name',
   totalTickets: 'totalTickets',
   availableTickets: 'availableTickets',
   version: 'version',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
