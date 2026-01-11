@@ -11,18 +11,24 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   password  String
+  role      String   @default("USER") // USER, VENDOR, ADMIN
   createdAt DateTime @default(now())
   tickets   Ticket[]
+  events    Event[]
 }
 
 model Event {
   id               Int      @id @default(autoincrement())
+  userId           Int
   name             String
   totalTickets     Int
   availableTickets Int
   version          Int      @default(0)
   createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
   tickets          Ticket[]
+
+  organizer User @relation(fields: [userId], references: [id])
 }
 
 model Ticket {
