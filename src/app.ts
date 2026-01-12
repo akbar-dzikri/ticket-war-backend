@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import jwt from "./plugins/jwt.js";
 import { authRoutes } from "./modules/auth/auth.route.js";
 import { errorHandler } from "./lib/error-handler.js";
+import { eventRoutes } from "./modules/events/event.route.js";
 
 const envToLogger = {
   development: {
@@ -28,6 +29,7 @@ await app.register(jwt);
 app.setErrorHandler(errorHandler);
 
 await app.register(authRoutes, { prefix: "/api/auth" });
+await app.register(eventRoutes, { prefix: "/api/events" });
 
 app.get("/", (request, reply) => {
   return { msg: "ok" };
