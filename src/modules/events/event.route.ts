@@ -12,7 +12,7 @@ async function eventRoutes(app: FastifyInstance) {
   app.get("/", getAllEventsHandler);
   app.get("/:id", getEventDetailsHandler);
 
-  app.post("/:id/book", bookEventHandler);
+  app.post("/:id/book", { onRequest: [app.authenticate] }, bookEventHandler);
 }
 
 export { eventRoutes };
