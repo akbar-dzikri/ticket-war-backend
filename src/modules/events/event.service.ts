@@ -54,3 +54,47 @@ export async function getEventById(id: number) {
 
   return event;
 }
+
+export async function bookEvent(eventId: number, userId: number) {
+  const event = await prisma.event.findUnique({
+    where: {
+      id: eventId,
+    },
+  });
+
+  if (!event) {
+    throw createHttpError(404, "Event not found");
+  }
+
+  if (event.availableTickets <= 0) {
+    throw createHttpError(400, "No available seat");
+  }
+
+  console.log(`[userId: ${userId}] Processing payment...`);
+  await simulatePaymentGateway();
+
+  const bookedEvent = await prisma.event.update({
+    where: {
+      id: eventId,
+    },
+    data: {
+      availableTickets: {
+        decrement: 1,
+      },
+    },
+    select: {
+      name: true,
+      availableTickets: true,
+      totalTickets: true,
+    },
+  });
+
+  const ticket = await prisma.ticket.create({
+    data: {
+      eventId,
+      userId,
+    },
+  });
+
+  return { ticket, bookedEvent };
+}
