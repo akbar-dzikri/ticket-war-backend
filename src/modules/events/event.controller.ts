@@ -1,6 +1,11 @@
 import { EventCreateInput } from "#/lib/prisma/generated/models.js";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { createEvent, getEventById, getEvents } from "./event.service.js";
+import {
+  bookEvent,
+  createEvent,
+  getEventById,
+  getEvents,
+} from "./event.service.js";
 
 export async function createEventHandler(
   request: FastifyRequest,
@@ -29,4 +34,16 @@ export async function getEventDetailsHandler(
 
   const event = await getEventById(+id);
   reply.code(200).send(event);
+}
+
+export async function bookEventHandler(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  const { id } = request.params as { id: string };
+  const userId = request.user.id;
+
+  const result = await bookEvent(+id, userId);
+
+  return reply.code(201).send(result);
 }

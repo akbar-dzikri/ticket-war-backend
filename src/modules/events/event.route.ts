@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify";
 import {
+  bookEventHandler,
   createEventHandler,
   getAllEventsHandler,
   getEventDetailsHandler,
@@ -10,6 +11,8 @@ async function eventRoutes(app: FastifyInstance) {
 
   app.get("/", getAllEventsHandler);
   app.get("/:id", getEventDetailsHandler);
+
+  app.post("/:id/book", bookEventHandler);
 }
 
 export { eventRoutes };
