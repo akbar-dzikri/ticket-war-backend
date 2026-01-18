@@ -32,7 +32,7 @@ A high-concurrency event ticketing system designed to handle massive traffic sur
 
 ### Phase 3: The Engineering Challenges (The "Selling Point")
 
-- [ ] **Stress Test Simulation**: Create a script to simulate 100+ concurrent requests to buy tickets.
+- [X] **Stress Test Simulation**: Create a script to simulate 100+ concurrent requests to buy tickets.
 - [ ] **Fixing Race Conditions (Level 1)**: Implement Prisma Interactive Transactions.
 - [ ] **Scaling Up (Level 2) - RabbitMQ Integration**:
   - [ ] **Setup Connection**: Create a robust RabbitMQ connection handler (handling reconnects).
