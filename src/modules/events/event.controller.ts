@@ -15,7 +15,7 @@ export async function createEventHandler(
   const body = request.body as EventCreateInput;
 
   const createdEvent = await createEvent(body, userId);
-  reply.code(201).send(createdEvent);
+  return reply.code(201).send(createdEvent);
 }
 
 export async function getAllEventsHandler(
@@ -23,7 +23,7 @@ export async function getAllEventsHandler(
   reply: FastifyReply
 ) {
   const events = await getEvents();
-  reply.code(200).send(events);
+  return reply.code(200).send(events);
 }
 
 export async function getEventDetailsHandler(
@@ -33,7 +33,7 @@ export async function getEventDetailsHandler(
   const { id } = request.params as { id: string };
 
   const event = await getEventById(+id);
-  reply.code(200).send(event);
+  return reply.code(200).send(event);
 }
 
 export async function bookEventHandler(
