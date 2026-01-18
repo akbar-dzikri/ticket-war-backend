@@ -28,7 +28,7 @@ A high-concurrency event ticketing system designed to handle massive traffic sur
 - [X] **Authentication**: Implement JWT Auth (Register/Login).
 - [X] **Event Management**: CRUD APIs for Events (Create event, set quota/seat stock).
 - [X] **Public View**: API to list available events and remaining seats.
-- [ ] **Booking System (Naive Version)**: Implement basic "Book Ticket" logic directly hitting the DB (Intentionally vulnerable to race conditions for testing).
+- [X] **Booking System (Naive Version)**: Implement basic "Book Ticket" logic directly hitting the DB (Intentionally vulnerable to race conditions for testing).
 
 ### Phase 3: The Engineering Challenges (The "Selling Point")
 
