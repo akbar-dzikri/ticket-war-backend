@@ -10,7 +10,7 @@ export async function handleRegister(
   const body = request.body as UserCreateInput;
 
   const registeredUser = await authRegisterService(body);
-  reply.code(201).send(registeredUser);
+  return reply.code(201).send(registeredUser);
 }
 
 export async function handleLogin(
@@ -24,5 +24,5 @@ export async function handleLogin(
     { id: user.id, email: user.email, role: user.role },
     { expiresIn: "7d" }
   );
-  reply.code(200).send({ token, user });
+  return reply.code(200).send({ token, user });
 }
